@@ -9,11 +9,25 @@ const app = express();
 const port = 3030;
 
 
-//Routes
+//HTML Routes
 app.get("/notes", function(req, res) {
     res.sendFile(path.join(__dirname/public, "notes.html"))
 });
 
 app.get("*", function(req, res) {
     res.sendFile(path.join(__dirname/public, "index.html"))
+});
+
+//API Routes
+
+app.get("/api/notes", function(req, res) {
+
+});
+
+app.post("/api/notes", function(req,res) {
+
+});
+
+app.delete("/api/notes/:id", function(req,res) {
+
 });
