@@ -23,10 +23,6 @@ app.get("/notes", function(req, res) {
     res.sendFile(path.join(directory, "notes.html"))
 });
 
-app.get("*", function(req, res) {
-    res.sendFile(path.join(directory, "index.html"))
-});
-
 //API Routes
 
 app.get("/api/notes", function(req, res) {
@@ -47,6 +43,10 @@ app.delete("/api/notes/:id", function(req,res) {
 
 });
 
+// Moved after API calls to appear on page
+app.get("*", function(req, res) {
+    res.sendFile(path.join(directory, "index.html"))
+});
 
 // Starting the server to listen
 app.listen(PORT, function() {
