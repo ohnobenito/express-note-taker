@@ -30,11 +30,17 @@ app.get("*", function(req, res) {
 //API Routes
 
 app.get("/api/notes", function(req, res) {
+    //Should read the DB file and return notes back as JSON
     res.sendFile(path.join(database, "db.json"))
 });
 
 app.post("/api/notes", function(req,res) {
+    //Should receive a new note to save on request body
+    let newNote = req.body;
 
+    //Should be returned back to the client
+    console.log(newNote);
+    res.json(newNote);
 });
 
 app.delete("/api/notes/:id", function(req,res) {
