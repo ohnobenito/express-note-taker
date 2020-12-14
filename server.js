@@ -6,22 +6,31 @@ const path = require("path");
 
 //Setting up Express app
 const app = express();
-const port = 3030;
+const PORT = 3030;
 
+const directory = path.join(__dirname, "/public");
+const database = path.join(__dirname, "/db");
+
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+//tells server to find static files here when looking for linked content
+app.use(express.static(directory));
 
 //HTML Routes
 app.get("/notes", function(req, res) {
-    res.sendFile(path.join(__dirname/public, "notes.html"))
+    res.sendFile(path.join(directory, "notes.html"))
 });
 
 app.get("*", function(req, res) {
-    res.sendFile(path.join(__dirname/public, "index.html"))
+    res.sendFile(path.join(directory, "index.html"))
 });
 
 //API Routes
 
 app.get("/api/notes", function(req, res) {
-
+    res.sendFile(path.join(database, "db.json"))
 });
 
 app.post("/api/notes", function(req,res) {
