@@ -6,7 +6,7 @@ const path = require("path");
 
 //Setting up Express app
 const app = express();
-const PORT = 3030;
+const PORT = process.env.PORT || 3030;
 
 const directory = path.join(__dirname, "/public");
 const database = path.join(__dirname, "/db/db.json");
@@ -32,11 +32,16 @@ app.get("/api/notes", function(req, res) {
 });
 
 app.post("/api/notes", function(req,res) {
+    let savedNotes = JSON.parse(fs.readFileSync(database));
     //Should receive a new note to save on request body
     let newNote = req.body;
+    let noteId = (savedNotes.length).toString();
+    newNote.id = noteId;
+    savedNotes.push(newNote);
 
     //Should be returned back to the client
     console.log(newNote);
+    fs.writeFileSync(database, JSON.stringify(savedNotes));
     res.json(newNote);
 });
 
