@@ -9,7 +9,7 @@ const app = express();
 const PORT = 3030;
 
 const directory = path.join(__dirname, "/public");
-const database = path.join(__dirname, "/db");
+const database = path.join(__dirname, "/db/db.json");
 
 
 app.use(express.json());
@@ -28,7 +28,7 @@ app.get("/notes", function(req, res) {
 
 app.get("/api/notes", function(req, res) {
     //Should read the DB file and return notes back as JSON
-    res.sendFile(path.join(database, "db.json"))
+    res.sendFile(database);
 });
 
 app.post("/api/notes", function(req,res) {
