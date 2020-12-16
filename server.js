@@ -14,7 +14,6 @@ const database = path.join(__dirname, "/db/db.json");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
 //tells server to find static files here when looking for linked content
 app.use(express.static(directory));
 
@@ -32,21 +31,28 @@ app.get("/api/notes", function(req, res) {
 });
 
 app.post("/api/notes", function(req,res) {
+    //Saved Notes from database 
     let savedNotes = JSON.parse(fs.readFileSync(database));
     //Should receive a new note to save on request body
     let newNote = req.body;
+    //Take length of saved notes string to create a new id
     let noteId = (savedNotes.length).toString();
     newNote.id = noteId;
+    //push new note to saved
     savedNotes.push(newNote);
-
     //Should be returned back to the client
     console.log(newNote);
     fs.writeFileSync(database, JSON.stringify(savedNotes));
-    res.json(newNote);
+    res.json(savedNotes);
 });
 
 app.delete("/api/notes/:id", function(req,res) {
-
+    //Saved Notes from database
+    let savedNotes = JSON.parse(fs.readFileSync(database));
+    // Require params of id
+    let noteId = req.params.id;
+    console.log(`Delete button pressed for id: ${noteId}`)
+ 
 });
 
 app.get("*", function(req, res) {
