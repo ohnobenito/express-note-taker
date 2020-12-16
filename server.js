@@ -8,6 +8,7 @@ const path = require("path");
 const app = express();
 const PORT = process.env.PORT || 3030;
 
+//PATHS
 const directory = path.join(__dirname, "/public");
 const database = path.join(__dirname, "/db/db.json");
 
@@ -70,6 +71,7 @@ app.delete("/api/notes/:id", function(req,res) {
  
 });
 
+//Should return the index.html file
 app.get("*", function(req, res) {
     res.sendFile(path.join(directory, "index.html"))
 });
@@ -77,4 +79,4 @@ app.get("*", function(req, res) {
 // Starting the server to listen
 app.listen(PORT, function() {
     console.log("App is listening on PORT " + PORT);
-})
+});
