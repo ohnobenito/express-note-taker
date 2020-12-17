@@ -3,7 +3,7 @@
 ## Description 
 An application that can be used to write, save, and delete notes from the user. 
 
-Links to [GitHub Repo](https://www.github.com/ohnobenito/express-note-taker) and [Deployed App](https://immense-temple-94391.herokuapp.com/)
+Links to [GitHub Repo](https://github.com/ohnobenito/note-taker-app) and [Deployed App](https://immense-temple-94391.herokuapp.com/)
 
 ![Badge:](https://img.shields.io/badge/License-mit-brightgreen)
 
